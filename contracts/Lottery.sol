@@ -9,7 +9,7 @@ contract Lottery {
     mapping (address => bytes32) playersHash;
 
     uint8 winningNumber;
-    uint8[] public numbers;
+    uint8[] numbers;
     address owner;
     LotteryState state;
 
@@ -53,12 +53,13 @@ contract Lottery {
         winningNumber = random();
     }
 
-
+    //Gets the winners
     function getWinners() public view returns (address[] memory) {
         require(state == LotteryState.Finished, "LotteryState needs to be finished");
         return playersByNumber[winningNumber];
     }
 
+    //Randomise the winning number by XOR
     function random() private view returns (uint8) {
         uint8 randomNumber = numbers[0];
         for (uint8 i = 1; i < numbers.length; ++i) {
