@@ -1,7 +1,15 @@
+const ethers = require('ethers');
+
 App = {
   web3Provider: null,
   contracts: {},
   account: '0x0',
+  state: {
+    lotteryNumber: 0,
+    lotteryHash: '0x0',
+    round: 0, //0,1,2
+    jackpot: 0 //ether
+  },
 
   init: async function() {
     await App.initWeb3();
@@ -43,16 +51,27 @@ App = {
         fromBlock: 0,
         toBlock: 'latest'
       }).watch(function(error, event) {
-        console.log("event triggered", event)
-        // Reload when a new vote is recorded
-        // App.render();
+        console.log("Second round event triggered", event);
+        // Send actual number once second round is triggered
+        // App.submitActualNumber();
       });
     });
   },
 
   enterNumber: function() {
     console.log("entering number");
+    console.log(web3.eth.accounts[0]);
+    lotteryNumber = $('#lotteryNumber').val();
+    lotteryHash = ethers.utils.solidityKeccak256(['uint8', 'address'], [lotteryNumber, punter1]);
   },
+
+  startSecondRound: function() {
+    console.log("starting second round");
+  },
+
+  determineWinner: function() {
+    console.log("determining winner");
+  }
 
 };
 
