@@ -34,7 +34,6 @@
         <div id="first-round" class="col-xs-12 col-sm-8 col-sm-push-2">
           <h2>First Round</h2>
           <h3>Submit your Number</h3>
-          <h3 id="current-jackpot"></h3>
           <h4>1 Ether Entry Fee</h4>
           <form onSubmit="App.enterNumber(); return false;">
             <div class="form-group">
@@ -48,12 +47,6 @@
         <div id="owner-second-round" class="col-xs-12 col-sm-8 col-sm-push-2">
           <form onSubmit="App.startSecondRound(); return false;">
             <button type="submit" class="btn btn-primary">Start Second Round</button>
-          </form>
-        </div>
-
-        <div id="owner-determine-winner" class="col-xs-12 col-sm-8 col-sm-push-2">
-          <form onSubmit="App.determineWinner(); return false;">
-            <button type="submit" class="btn btn-primary">Determine Winner</button>
           </form>
         </div>
 

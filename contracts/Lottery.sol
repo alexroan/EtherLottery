@@ -13,7 +13,7 @@ contract Lottery {
     uint8 winningNumber;
     uint8[] numbers;
     uint8 players;
-    address payable owner;
+    address owner;
     LotteryState state;
 
     //Constructor
@@ -41,18 +41,12 @@ contract Lottery {
         return state;
     }
 
-    //Get current Jackpot
-    function getJackpot() public view returns (uint256) {
-        return address(this).balance;
-    }
-
     //Enter hash of guessed number
     function enterHash(bytes32 x) public payable {
         require(state == LotteryState.FirstRound, "Must be first round");
         require(msg.value == 1 ether, "Must be 1 Eth");
         playersHash[msg.sender] = x;
         players += 1;
-        owner.transfer(0.1 ether);
     }
 
     //Owner runs the second round of the lottery
